@@ -7,5 +7,5 @@ CACHE_PREFIX = getattr(settings, "CACHE_PREFIX")
 
 @shared_task
 def cache_response(subpath, payload):
-	rds = Redis(decode_responses=True)
+	rds = Redis(decode_responses=True, db=1)
 	rds.set(CACHE_PREFIX + subpath, json.dumps(payload))
